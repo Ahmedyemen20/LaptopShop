@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My website</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+<body>
+  <header>
+      <h2>Mywebsite</h2>
+      <div id="userMenu"><!-- تُملأ عبر script.js حسب حالة تسجيل الدخول --></div>
+      <div id="cart">
+        <button id="btncart" aria-label="Open cart"><i class="fas fa-shopping-cart"></i></button>
+        <span id="Count">0</span>
+      </div>
+      <br />
+    <nav>
+        <a href="#" style="color: #FF5252;">home</a>
+        <a href="#products">products</a>
+        <a href="#contact-section">Contact</a>
+        <a href="#footer">Footer</a>
+    </nav>
+    <br />
+  </header>
+  <br /><br /><br />
+
+<!-- لوحة السلة الجانبية -->
+<div id="cartPanel">
+  <button id="closeCart" style="align-self:flex-end;">✕</button>
+  <h2>Your Cart</h2>
+  <div id="cartItems"></div>
+  <p id="cartTotal"></p>
+  <button id="checkoutBtn" type="button" style="background: var(--amber); color: var(--ink);">Checkout</button>
+</div>
+
+<main>
+<section id="Hero">
+    <div id="content-hero">
+        <h2>Find your perfect laptop</h2>
+        <p>Best Laptops for Gaming, Study, and Work</p>
+        <a id="a-see" class="btn-link" href="#products">see all products</a>
+    </div>
+    <br />
+</section>
+
+<section id="section-search">
+    <h2 style="color: white;">what do you want&nbsp;?</h2>
+    <div id="search">
+        <input type="text" name="search-input" id="search-input" placeholder="🔍&nbsp;search products...">
+        <br />
+        <label style="font-size: 15px; color: white; padding: 3px" for="select">Category</label>
+        <br />
+        <select id="select">
+            <option value="all">all Products</option>
+            <option value="gaming">gaming</option>
+            <option value="normal">normal</option>
+            <option value="strong">strong</option>
+        </select>
+        <br />
+        <label style="font-size: 15px; color: white;" for="selectPrice">Price</label>
+        <br />
+        <select id="selectPrice">
+            <option value="all">all prices</option>
+            <option value="500-1000">500-1000</option>
+            <option value="1000-1500">1000-1500</option>
+        </select>
+    </div>
+</section>
+<br />
+
+<section id="products">
+    <div id="content-products"></div>
+</section>
+
+<section id="addProduct">
+    <button id="Add" aria-label="Add product"><i class="fas fa-add"></i></button>
+    <div id="Page-product"></div>
+</section>
+<br /><br />
+
+<section id="contact-section">
+  <div id="contact-title">
+     <h2>Contact section</h2>
+  </div>
+  <br />
+  <div id="contact-info">
+      <p>
+          Have a question about our products?
+          <br />
+          Send us a message and we'll get <br /> back
+          to you as soon as possible.
+      </p>
+  </div>
+  <br />
+
+  <div id="contact-items">
+    <div id="Contact-Email">
+        <i class="fas fa-envelope"></i>
+        <strong>Email</strong>
+        <p class="info-text">uuuuooo777@gmail.com</p>
+    </div>
+
+    <div id="Contact-Phone">
+        <i class="fa-solid fa-phone"></i>
+        <strong>Phone</strong>
+        <p class="info-text">0553721407</p>
+    </div>
+    <div id="Contact-location">
+       <i class="fa-solid fa-location-dot"></i>
+        <strong>Location</strong>
+        <p class="info-text">Najran, Almshalih</p>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <form id="Contact-form">
+        <label for="input-name">Your Name</label>
+        <input type="text" class="form-input" id="input-name" required>
+        <label for="input-email">Email</label>
+        <input type="email" class="form-input" id="input-email" required>
+        <label for="subject">Subject</label>
+        <input type="text" class="form-input" id="subject" required>
+        <label for="massage">Message</label>
+        <input type="text" class="form-input" id="massage" required>
+        <button id="btn-send" type="submit">Submit</button>
+        <p id="formMsg"></p>
+    </form>
+  </div>
+</section>
+
+</main>
+<footer id="footer">
+   <div id="footer-title">
+       <h2>Mywebsite</h2>
+       <br />
+       <p>Welcome to my website <br /> Discover more</p>
+   </div>
+
+   <div id="Links">
+       <p id="Pform">Quick links</p>
+       <a class="footer-link" href="#">Home</a>
+       <a class="footer-link" href="#products">products</a>
+       <a class="footer-link" href="#contact-section">Contact</a>
+   </div>
+   <div id="Categories">
+       <p id="Pform">Categories</p>
+       <a class="footer-link" href="#">all Products</a>
+       <a class="footer-link" href="#">gaming</a>
+       <a class="footer-link" href="#">normal</a>
+       <a class="footer-link" href="#">strong</a>
+   </div>
+   <div id="Accounts">
+       <p id="Pform">Accounts</p>
+       <a class="footer-link" href="#">Whatsapp</a>
+       <a class="footer-link" href="#">Facebook</a>
+       <a class="footer-link" href="#">Instagram</a>
+   </div>
+</footer>
+<script src="script.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

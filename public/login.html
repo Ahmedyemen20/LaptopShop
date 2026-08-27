@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - My website</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="auth-page">
+  <div class="auth-card">
+    <h1>Welcome back</h1>
+    <p class="auth-sub">Log in to your account</p>
+    <form id="loginForm">
+      <label for="email">Email</label>
+      <input class="form-input" type="email" id="email" required>
+      <label for="password">Password</label>
+      <input class="form-input" type="password" id="password" required minlength="4">
+      <p class="auth-error" id="errorMsg"></p>
+      <button type="submit">Log in</button>
+    </form>
+    <p class="auth-switch">Don't have an account? <a href="register.html">Create one</a></p>
+  </div>
+</div>
+<script>
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const errorMsg = document.getElementById('errorMsg');
+    errorMsg.textContent = '';
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+
+    try {
+        const res = await fetch('/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+            errorMsg.textContent = data.error || 'Something went wrong';
+            return;
+        }
+        window.location.href = 'index.html';
+    } catch (err) {
+        errorMsg.textContent = 'Could not reach the server';
+    }
+});
+</script>
+</body>
+</html>
