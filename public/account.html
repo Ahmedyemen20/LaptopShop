@@ -11,23 +11,24 @@
 </head>
 <body>
 
-<header>
-  <div class="header-top">
-    <h2><a href="index.html" style="color: inherit; text-decoration: none; padding: 0;">Mywebsite</a></h2>
-    <div class="header-actions">
-      <div id="userMenu"></div>
-      <button id="hamburgerBtn" class="hamburger-btn" aria-label="Menu" aria-expanded="false">
-        <i class="fas fa-bars"></i>
-      </button>
-    </div>
+<header class="app-header">
+  <button id="hamburgerBtn" class="hamburger-btn" aria-label="Menu" aria-expanded="false">
+    <i class="fas fa-bars"></i>
+  </button>
+  <h2 class="app-logo"><a href="index.html" style="color: inherit; text-decoration: none; padding: 0;">Mywebsite</a></h2>
+  <div class="header-icons">
+    <a href="index.html" aria-label="Home"><i class="fas fa-home"></i></a>
   </div>
-  <nav id="mainNav">
-    <a href="index.html">home</a>
-    <a href="index.html#products">products</a>
-    <a href="index.html#contact-section">Contact</a>
-    <a href="account.html" style="color: #FF5252;">My Account</a>
-  </nav>
 </header>
+
+<div id="navOverlay" class="nav-overlay"></div>
+<nav id="mainNav" class="side-drawer">
+  <div id="userMenu"></div>
+  <a href="index.html">home</a>
+  <a href="index.html#products">products</a>
+  <a href="index.html#contact-section">Contact</a>
+  <a href="account.html" style="color: #FF5252;">My Account</a>
+</nav>
 
 <main class="account-page">
   <section class="account-card">
@@ -40,6 +41,14 @@
     <div id="ordersList"></div>
   </section>
 </main>
+
+<nav class="bottom-nav">
+    <button type="button" class="bottom-nav-item" onclick="window.location.href='index.html'"><i class="fas fa-store"></i><span>Shop</span></button>
+    <button type="button" class="bottom-nav-item" onclick="window.location.href='index.html#products'"><i class="fas fa-th-large"></i><span>Category</span></button>
+    <button type="button" class="bottom-nav-item" onclick="window.location.href='index.html#section-search'"><i class="fas fa-search"></i><span>Search</span></button>
+    <button type="button" class="bottom-nav-item" onclick="window.location.href='index.html'"><i class="fas fa-shopping-cart"></i><span>Cart</span></button>
+    <button type="button" class="bottom-nav-item active"><i class="fas fa-user"></i><span>Me</span></button>
+</nav>
 
 <script>
 async function init() {
@@ -105,10 +114,19 @@ init();
 
 const hamburgerBtn = document.getElementById('hamburgerBtn');
 const mainNav = document.getElementById('mainNav');
+const navOverlay = document.getElementById('navOverlay');
+function closeDrawer() {
+    mainNav.classList.remove('open');
+    navOverlay.classList.remove('open');
+    hamburgerBtn.setAttribute('aria-expanded', 'false');
+}
 hamburgerBtn.addEventListener('click', () => {
     const isOpen = mainNav.classList.toggle('open');
+    navOverlay.classList.toggle('open', isOpen);
     hamburgerBtn.setAttribute('aria-expanded', isOpen);
 });
+navOverlay.addEventListener('click', closeDrawer);
+mainNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeDrawer));
 </script>
 </body>
 </html>

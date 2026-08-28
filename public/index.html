@@ -12,29 +12,37 @@
 
 </head>
 <body>
-  <header>
-    <div class="header-top">
-      <h2>Mywebsite</h2>
-      <div class="header-actions">
-        <div id="userMenu"><!-- تُملأ عبر script.js حسب حالة تسجيل الدخول --></div>
-        <div id="cart">
-          <button id="btncart" aria-label="Open cart"><i class="fas fa-shopping-cart"></i></button>
-          <span id="Count">0</span>
-        </div>
-        <button id="hamburgerBtn" class="hamburger-btn" aria-label="Menu" aria-expanded="false">
-          <i class="fas fa-bars"></i>
-        </button>
-      </div>
+  <header class="app-header">
+    <button id="hamburgerBtn" class="hamburger-btn" aria-label="Menu" aria-expanded="false">
+      <i class="fas fa-bars"></i>
+    </button>
+    <h2 class="app-logo">Mywebsite</h2>
+    <div class="header-icons">
+      <button id="searchIconBtn" aria-label="Search"><i class="fas fa-search"></i></button>
+      <a id="headerAccountIcon" href="login.html" aria-label="Account"><i class="fas fa-user"></i></a>
+      <button id="btncart" aria-label="Open cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="Count">0</span>
+      </button>
     </div>
-    <nav id="mainNav">
-        <a href="#" style="color: #FF5252;">home</a>
-        <a href="#products">products</a>
-        <a href="#contact-section">Contact</a>
-        <a href="account.html">My Account</a>
-        <a href="#footer">Footer</a>
-    </nav>
   </header>
-  <br /><br />
+
+  <div id="navOverlay" class="nav-overlay"></div>
+  <nav id="mainNav" class="side-drawer">
+    <div id="userMenu"><!-- تُملأ عبر script.js حسب حالة تسجيل الدخول --></div>
+    <a href="#" style="color: #FF5252;">home</a>
+    <a href="#products">products</a>
+    <a href="#contact-section">Contact</a>
+    <a href="account.html">My Account</a>
+    <a href="#footer">Footer</a>
+  </nav>
+
+  <div class="category-tabs" id="categoryTabs">
+    <button class="tab active" data-category="all">All</button>
+    <button class="tab" data-category="gaming">Gaming</button>
+    <button class="tab" data-category="normal">Everyday</button>
+    <button class="tab" data-category="strong">Performance</button>
+  </div>
 
 <!-- لوحة السلة الجانبية -->
 <div id="cartPanel">
@@ -53,6 +61,38 @@
         <a id="a-see" class="btn-link" href="#products">see all products</a>
     </div>
     <br />
+</section>
+
+<div class="promo-strip">
+    <div class="promo-item">
+        <i class="fas fa-truck"></i>
+        <div><strong>Free Shipping</strong><span>On orders over $999</span></div>
+    </div>
+    <div class="promo-item">
+        <i class="fas fa-tag"></i>
+        <div><strong>Student Discount</strong><span>Save up to 10%</span></div>
+    </div>
+</div>
+
+<section class="category-grid-section">
+    <div class="category-grid">
+        <div class="category-circle" data-category="gaming">
+            <div class="circle-icon"><i class="fas fa-gamepad"></i></div>
+            <span>Gaming</span>
+        </div>
+        <div class="category-circle" data-category="normal">
+            <div class="circle-icon"><i class="fas fa-laptop"></i></div>
+            <span>Everyday</span>
+        </div>
+        <div class="category-circle" data-category="strong">
+            <div class="circle-icon"><i class="fas fa-bolt"></i></div>
+            <span>Performance</span>
+        </div>
+        <div class="category-circle" data-category="all">
+            <div class="circle-icon"><i class="fas fa-star"></i></div>
+            <span>All Laptops</span>
+        </div>
+    </div>
 </section>
 
 <section id="section-search">
@@ -168,6 +208,15 @@
        <a class="footer-link" href="#">Instagram</a>
    </div>
 </footer>
+
+<nav class="bottom-nav">
+    <button type="button" class="bottom-nav-item active" data-action="home"><i class="fas fa-store"></i><span>Shop</span></button>
+    <button type="button" class="bottom-nav-item" data-action="category"><i class="fas fa-th-large"></i><span>Category</span></button>
+    <button type="button" class="bottom-nav-item" data-action="search"><i class="fas fa-search"></i><span>Search</span></button>
+    <button type="button" class="bottom-nav-item" data-action="cart"><i class="fas fa-shopping-cart"></i><span>Cart</span></button>
+    <button type="button" class="bottom-nav-item" data-action="account"><i class="fas fa-user"></i><span>Me</span></button>
+</nav>
+
 <script src="script.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

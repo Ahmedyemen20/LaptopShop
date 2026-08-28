@@ -18,7 +18,9 @@ async function loadCurrentUser() {
 
 function renderUserMenu() {
     const el = document.getElementById('userMenu');
+    const headerAccountIcon = document.getElementById('headerAccountIcon');
     if (currentUser) {
+        headerAccountIcon.href = 'account.html';
         el.innerHTML = `
             <a id="userAccountLink" href="account.html">Hi, ${currentUser.name}</a>
             <button type="button" id="logoutBtn">Logout</button>
@@ -30,6 +32,7 @@ function renderUserMenu() {
             updateCartUI();
         });
     } else {
+        headerAccountIcon.href = 'login.html';
         el.innerHTML = `<a href="login.html">Login</a>`;
     }
 }
@@ -85,12 +88,59 @@ document.getElementById('search-input').addEventListener('input', (e) => {
     renderProducts();
 });
 document.getElementById('select').addEventListener('change', (e) => {
-    filters.category = e.target.value;
-    renderProducts();
+    setCategoryFilter(e.target.value);
 });
 document.getElementById('selectPrice').addEventListener('change', (e) => {
     filters.price = e.target.value;
     renderProducts();
+});
+
+function setCategoryFilter(category, { scroll = false } = {}) {
+    filters.category = category;
+    document.getElementById('select').value = category;
+    document.querySelectorAll('.category-tabs .tab').forEach((tab) => {
+        tab.classList.toggle('active', tab.dataset.category === category);
+    });
+    renderProducts();
+    if (scroll) {
+        document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+document.querySelectorAll('.category-tabs .tab').forEach((tab) => {
+    tab.addEventListener('click', () => setCategoryFilter(tab.dataset.category, { scroll: true }));
+});
+
+document.querySelectorAll('.category-circle').forEach((circle) => {
+    circle.addEventListener('click', () => setCategoryFilter(circle.dataset.category, { scroll: true }));
+});
+
+document.getElementById('searchIconBtn').addEventListener('click', () => {
+    document.getElementById('section-search').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('search-input').focus();
+});
+
+/* ================= شريط التنقل السفلي ================= */
+
+document.querySelectorAll('.bottom-nav-item').forEach((btn) => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.bottom-nav-item').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const action = btn.dataset.action;
+        if (action === 'home') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else if (action === 'category') {
+            document.querySelector('.category-grid-section').scrollIntoView({ behavior: 'smooth' });
+        } else if (action === 'search') {
+            document.getElementById('section-search').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('search-input').focus();
+        } else if (action === 'cart') {
+            document.getElementById('btncart').click();
+        } else if (action === 'account') {
+            window.location.href = currentUser ? 'account.html' : 'login.html';
+        }
+    });
 });
 
 /* ================= إضافة منتج (تتطلب تسجيل دخول) ================= */
@@ -241,15 +291,24 @@ const cartPanel = document.getElementById('cartPanel');
 
 const hamburgerBtn = document.getElementById('hamburgerBtn');
 const mainNav = document.getElementById('mainNav');
+const navOverlay = document.getElementById('navOverlay');
+
+function openDrawer() {
+    mainNav.classList.add('open');
+    navOverlay.classList.add('open');
+    hamburgerBtn.setAttribute('aria-expanded', 'true');
+}
+function closeDrawer() {
+    mainNav.classList.remove('open');
+    navOverlay.classList.remove('open');
+    hamburgerBtn.setAttribute('aria-expanded', 'false');
+}
 hamburgerBtn.addEventListener('click', () => {
-    const isOpen = mainNav.classList.toggle('open');
-    hamburgerBtn.setAttribute('aria-expanded', isOpen);
+    mainNav.classList.contains('open') ? closeDrawer() : openDrawer();
 });
+navOverlay.addEventListener('click', closeDrawer);
 mainNav.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-        mainNav.classList.remove('open');
-        hamburgerBtn.setAttribute('aria-expanded', 'false');
-    });
+    link.addEventListener('click', closeDrawer);
 });
 
 document.getElementById('btncart').addEventListener('click', () => {

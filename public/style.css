@@ -47,39 +47,113 @@ h1 {
     margin-bottom: 20px;
 }
 
-header {
+.app-header {
+    position: sticky;
+    top: 0;
+    z-index: 500;
     background: var(--ink);
-    padding-bottom: 4px;
-}
-
-.header-top {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 12px 16px;
     gap: 10px;
-    padding: 14px 20px;
 }
 
-header h2 {
+.app-logo {
     color: var(--amber);
     font-weight: 700;
     letter-spacing: 0.5px;
+    font-size: 20px;
 }
 
-.header-actions {
+.header-icons {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 6px;
+}
+
+.header-icons button,
+.header-icons a {
+    background: transparent;
+    border: none;
+    color: #E6E8EA;
+    font-size: 17px;
+    padding: 8px;
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+}
+
+#btncart {
+    color: var(--amber);
+}
+
+#Count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: var(--ink);
+    font-weight: bold;
+    background: var(--teal);
+    border-radius: 20px;
+    padding: 0px 5px;
+    font-size: 10px;
+}
+
+/* قائمة جانبية (Hamburger drawer) */
+.nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 900;
+}
+
+.nav-overlay.open {
+    display: block;
+}
+
+.side-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 260px;
+    max-width: 80%;
+    background: var(--ink);
+    z-index: 950;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 20px 16px;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+}
+
+.side-drawer.open {
+    transform: translateX(0);
+}
+
+.side-drawer a {
+    color: #E6E8EA;
+    padding: 12px 10px;
+    border-radius: 8px;
+}
+
+.side-drawer a:hover {
+    color: var(--amber);
 }
 
 #userMenu {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
     font-size: 14px;
     color: #E6E8EA;
-    white-space: nowrap;
+    padding: 6px 10px 16px;
+    border-bottom: 1px solid #2A2F36;
+    margin-bottom: 8px;
 }
 
 #userMenu a, #userMenu button {
@@ -99,30 +173,160 @@ header h2 {
     color: white;
 }
 
-#cart {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    border: none;
-    gap: 6px;
-}
-
-#btncart {
+.hamburger-btn {
+    display: block;
     background: transparent;
-    outline: none;
     border: none;
     color: var(--amber);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 6px 10px;
+}
+
+/* تصنيفات علوية (Tabs) */
+.category-tabs {
+    display: flex;
+    gap: 22px;
+    overflow-x: auto;
+    background: var(--ink-soft);
+    padding: 12px 16px;
+    scrollbar-width: none;
+}
+
+.category-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.category-tabs .tab {
+    background: transparent;
+    border: none;
+    color: #9AA1AA;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 4px 0;
+    white-space: nowrap;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+.category-tabs .tab.active {
+    color: white;
+    border-bottom-color: var(--amber);
+}
+
+/* شريط العروض */
+.promo-strip {
+    display: flex;
+    background: #FFF6E8;
+    padding: 14px 16px;
+    gap: 20px;
+}
+
+.promo-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    font-size: 13px;
+}
+
+.promo-item i {
+    color: var(--amber);
     font-size: 18px;
+}
+
+.promo-item strong {
+    display: block;
+    margin: 0;
+    font-size: 13px;
+    color: var(--ink);
+}
+
+.promo-item span {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+/* شبكة التصنيفات الدائرية */
+.category-grid-section {
+    padding: 18px 10px;
+    background: var(--surface);
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    text-align: center;
+}
+
+.category-circle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
     cursor: pointer;
 }
 
-#Count {
-    color: var(--surface);
-    font-weight: bold;
-    background: var(--teal);
-    border-radius: 20px;
-    padding: 2px 8px;
+.circle-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--base);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: var(--ink);
+    transition: 0.2s;
+}
+
+.category-circle:hover .circle-icon {
+    background: var(--amber);
+}
+
+.category-circle span {
     font-size: 12px;
+    color: var(--ink);
+}
+
+/* شريط تنقل سفلي ثابت */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    display: flex;
+    z-index: 500;
+    padding: 6px 0 max(6px, env(safe-area-inset-bottom));
+}
+
+.bottom-nav-item {
+    flex: 1;
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    font-size: 10px;
+    color: var(--text-muted);
+    padding: 6px 0;
+    cursor: pointer;
+}
+
+.bottom-nav-item i {
+    font-size: 17px;
+}
+
+.bottom-nav-item.active {
+    color: var(--amber);
+}
+
+body {
+    padding-bottom: 62px;
 }
 
 /* لوحة السلة */
@@ -272,8 +476,8 @@ header h2 {
 
 #Add {
     position: fixed;
-    top: 80%;
-    right: 20px;
+    bottom: 78px;
+    right: 16px;
     padding: 14px 18px;
     border-radius: 50%;
     font-size: 20px;
@@ -622,28 +826,6 @@ footer {
     line-height: 2.4;
 }
 
-.hamburger-btn {
-    display: none;
-    background: transparent;
-    border: none;
-    color: var(--amber);
-    font-size: 20px;
-    cursor: pointer;
-    padding: 6px 10px;
-}
-
-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--ink-soft);
-    width: 100%;
-    margin: 0;
-    padding: 10px;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
 a {
     padding: 10px;
     text-decoration: none;
@@ -881,36 +1063,19 @@ button {
         width: 100%;
     }
 
-    .header-top {
-        flex-direction: row;
-        align-items: center;
-        gap: 8px;
+    .category-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
     }
 
-    .header-actions {
-        width: auto;
-        justify-content: flex-end;
+    .circle-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 17px;
     }
 
-    .hamburger-btn {
-        display: block;
-    }
-
-    nav {
-        display: none;
+    .promo-strip {
         flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        width: 100%;
-    }
-
-    nav.open {
-        display: flex;
-    }
-
-    nav a {
-        text-align: center;
-        border-radius: 0;
-        padding: 14px;
+        gap: 10px;
     }
 }
