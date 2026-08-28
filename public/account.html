@@ -16,9 +16,12 @@
     <h2><a href="index.html" style="color: inherit; text-decoration: none; padding: 0;">Mywebsite</a></h2>
     <div class="header-actions">
       <div id="userMenu"></div>
+      <button id="hamburgerBtn" class="hamburger-btn" aria-label="Menu" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
   </div>
-  <nav>
+  <nav id="mainNav">
     <a href="index.html">home</a>
     <a href="index.html#products">products</a>
     <a href="index.html#contact-section">Contact</a>
@@ -99,6 +102,13 @@ function renderAccountUserMenu(user) {
 }
 
 init();
+
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mainNav = document.getElementById('mainNav');
+hamburgerBtn.addEventListener('click', () => {
+    const isOpen = mainNav.classList.toggle('open');
+    hamburgerBtn.setAttribute('aria-expanded', isOpen);
+});
 </script>
 </body>
 </html>

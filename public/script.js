@@ -238,6 +238,20 @@ async function updateCartUI() {
 }
 
 const cartPanel = document.getElementById('cartPanel');
+
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mainNav = document.getElementById('mainNav');
+hamburgerBtn.addEventListener('click', () => {
+    const isOpen = mainNav.classList.toggle('open');
+    hamburgerBtn.setAttribute('aria-expanded', isOpen);
+});
+mainNav.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+        mainNav.classList.remove('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+    });
+});
+
 document.getElementById('btncart').addEventListener('click', () => {
     if (!currentUser) {
         window.location.href = 'login.html';
