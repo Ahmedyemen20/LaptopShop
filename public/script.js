@@ -20,7 +20,7 @@ function renderUserMenu() {
     const el = document.getElementById('userMenu');
     if (currentUser) {
         el.innerHTML = `
-            <span>Hi, ${currentUser.name}</span>
+            <a id="userAccountLink" href="account.html">Hi, ${currentUser.name}</a>
             <button type="button" id="logoutBtn">Logout</button>
         `;
         document.getElementById('logoutBtn').addEventListener('click', async () => {
