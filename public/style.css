@@ -49,22 +49,57 @@ h1 {
 
 header {
     background: var(--ink);
+    padding-bottom: 4px;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 14px 20px;
 }
 
 header h2 {
-    position: relative;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
     color: var(--amber);
     font-weight: 700;
     letter-spacing: 0.5px;
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+#userMenu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #E6E8EA;
+    white-space: nowrap;
+}
+
+#userMenu a, #userMenu button {
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+#userAccountLink {
+    color: var(--teal);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0;
+}
+
+#logoutBtn {
+    background: var(--coral);
+    color: white;
+}
+
 #cart {
-    position: absolute;
-    top: 5px;
-    right: 5px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -591,13 +626,12 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    left: 0px;
     background-color: var(--ink-soft);
     width: 100%;
     margin: 0;
-    padding: 6px;
+    padding: 10px;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 a {
@@ -719,26 +753,71 @@ button {
     min-height: 16px;
 }
 
-/* قائمة المستخدم في الهيدر */
-#userMenu {
-    position: absolute;
-    top: 5px;
-    right: 60px;
+/* ================= صفحة الحساب ================= */
+
+.account-page {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 0 15px;
     display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    color: #E6E8EA;
+    flex-direction: column;
+    gap: 20px;
 }
 
-#userMenu a, #userMenu button {
-    padding: 6px 12px;
+.account-card {
+    background: var(--surface);
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: var(--shadow);
+}
+
+.account-card h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    text-align: left;
+    padding: 0;
+    margin-bottom: 16px;
+}
+
+.account-card h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    margin-bottom: 14px;
+    font-size: 20px;
+}
+
+.account-info p {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.6;
+}
+
+.order-card {
+    background: var(--base);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+}
+
+.order-card-head {
+    display: flex;
+    justify-content: space-between;
     font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
 }
 
-#logoutBtn {
-    background: var(--coral);
-    color: white;
+.order-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.order-total {
+    font-weight: bold;
+    color: var(--teal);
+    text-align: right;
 }
 
 /* تصميم للهاتف */
@@ -790,5 +869,16 @@ button {
 
     #cartPanel {
         width: 100%;
+    }
+
+    .header-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: space-between;
     }
 }
